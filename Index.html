@@ -1,0 +1,19 @@
+<script>
+function showProfile(i){
+ const w=workers[i];
+ alert(`👤 নাম: ${w.name}\n🔧 পেশা: ${w.pesh}\n📍 জেলা: ${w.loc}\n⏳ অভিজ্ঞতা: ${w.exp}\n⭐ রেটিং: ${w.rating}\n\nপ্রোফাইল দেখা হয়েছে!`);
+}
+function hire(i){
+ const w=workers[i];
+ const phone = w.phone || "01700000000";
+ if(confirm(`📞 ${w.name} কে হায়ার করতে চান?\n\nকল করুন: ${phone}\n\nWhatsApp এ যাবেন?`)){
+   window.open(`https://wa.me/88${phone}?text=আসসালামু আলাইকুম ${w.name}, NeedyBD থেকে বলছি। আপনাকে হায়ার করতে চাই।`, '_blank');
+ }
+}
+function render(list){
+ const c=document.getElementById('cards');c.innerHTML="";
+ list.forEach((w,idx)=>{
+  c.innerHTML+=`<div class="card"><div class="top"><div class="avatar">${w.icon||'👤'}</div><div><h3>${w.name}</h3><p>${w.exp} | ⭐ ${w.rating}</p><span style="background:#dcfce7;color:#15803d;padding:2px 10px;border-radius:20px;font-size:12px">${w.pesh} | ${w.loc}</span></div></div><div style="padding:0 18px 18px;display:flex;justify-content:space-between"><button onclick="showProfile(${idx})" style="padding:7px 16px;border-radius:20px;border:1px solid #ddd;background:white">প্রোফাইল</button><button onclick="hire(${idx})" style="padding:7px 16px;border-radius:20px;border:none;background:#111827;color:white">হায়ার</button></div></div>`;
+ });
+}
+</script>
